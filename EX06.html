@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climas</title>
+</head>
+
+<p>Escolha de climas</p>
+
+<p>1 - verão , 2 - inverno , 3 - outono, 4 - primavera</p>
+
+                    <form id="formulario">
+                            <input id="clima" type="number" placeholder="digite um clima">
+                    <button>Submeter</button>
+                    </form>
+
+
+                    <div id ="exibir"></div>
+
+<body>
+
+
+<script> 
+
+
+        function funcao(event){
+            event.preventDefault()
+
+            let climaex = parseFloat(clima.value)
+
+            if (climaex === 1) {
+    exibir.innerHTML = `Sol e Mar,clima perfeito pra uma praia.`;
+  } else if (climaex === 2) {
+    exibir.innerHTML = 'Dormir altas horas e usar moletom.';
+  } else if (climaex === 3) {
+    exibir.innerHTML = 'As folhas caem.';
+  } else if (climaex === 4) {
+    exibir.textContent = 'Natureza ressurge';
+  } 
+  else if(climaex !==1 && climaex !==2 && climaex !==3 && climaex !==4){
+    exibir.innerHTML = `numero de clima incorreto`;
+  }
+  else {
+    para.textContent = '';
+  }
+}
+        
+
+
+
+formulario.addEventListener('submit', funcao)
+</script>
+
+    
+</body>
+</html>

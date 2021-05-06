@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="mode.css">
+  <title>Programação em Microinformática - EXER Prof Array</title>
+</head>
+<body>
+  <h1>EXER ARRAY</h1>
+  <p>Cadastro de Professores</p>
+
+  <form id="form" novalidate>
+    <input id="field1" type="text" placeholder="Nome">
+    <input id="field2" type="text" placeholder="Sobrenome">
+    <input id="field3" type="text" placeholder="Sexo">
+    <input id="field4" type="text" placeholder="Titulação do prof">
+    <button>Adicionar</button>
+  </form>
+
+  <div class="buttons">
+    <button id="showAll">Exibir todos</button>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    let people = []
+
+    function clearFields() {
+      result.innerHTML = field1.value = field2.value = field3.value =field4.value = ''
+      field1.focus()
+    }
+
+    function isValid() {
+      field1.className = field2.className = field3.className =field4.className=''
+
+      if (!field1.value) {
+        result.innerHTML = '<p class="negative">Informe o nome!</p>'
+        field1.className = 'negative'
+        field1.focus()
+        return false
+      }
+
+      if (!field2.value) {
+        result.innerHTML = '<p class="negative">Informe o sobrenome!</p>'
+        field2.className = 'negative'
+        field2.focus()
+        return false
+      }
+
+      if (!field3.value) {
+        result.innerHTML = '<p class="negative">Informe o Sexo </p>'
+        field3.className = 'negative'
+        field3.focus()
+        return false
+      }
+      if (!field4.value) {
+        result.innerHTML = '<p class="negative">Informe a sua titulação</p>'
+        field4.className = 'negative'
+        field4.focus()
+        return false
+      }
+
+      return true
+    }
+
+    function onSubmit(event) {
+      event.preventDefault()
+
+      if (!isValid()) return
+
+      let person = {
+        firstName: field1.value,
+        lastName: field2.value,
+        gender: field3.value,
+        titulacao: field4.value,
+      }
+
+      people.push(person)
+      clearFields()
+    }
+
+    form.addEventListener('submit', onSubmit)
+
+    function onClick(event) {
+      event.preventDefault()
+
+      field1.className = field2.className = field3.className =field4.className = ''
+
+      if (!people.length) {
+        result.innerHTML = '<p class="negative">Nenhum professor(a) cadastrado.</p>'
+        field.focus()
+        return
+      }
+
+      let items = ''
+      for (let person of people) {
+        items += `<li>Name :${person.firstName} ${person.lastName}  Gender :${person.gender}, Titulação: ${person.titulacao} </li>`
+      }
+
+      result.innerHTML = `<ul>${items}</ul>`
+    }
+
+    showAll.addEventListener('click', onClick)
+  </script>
+</body>
+</html>
